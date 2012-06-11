@@ -1,0 +1,44 @@
+{
+	"name"        : "jquery.spinner",
+	"title"       : "jQuery spinner",
+	"description" : "Generate spinner using UTF8 html entities loop.",
+	"version"     : "1.0.0",
+	"dependencies": {
+		"jquery": ">=1.4.2"
+	},
+	"homepage"    : "https://github.com/adriengibrat/jQuery-spinner",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/adriengibrat/jQuery-spinner.git"
+	},
+	"author"      : {
+		"name": "Adrien Gibrat",
+		"url" : "https://github.com/adriengibrat"
+	},
+	"maintainers": [
+		{
+			"name": "Adrien Gibrat",
+			"url" : "https://github.com/adriengibrat"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url" : "MIT-LICENSE.txt"
+		},
+		{
+			"type": "GPLv2",
+			"url" : "GPL-LICENSE.txt"
+		}
+	],
+	"files": [
+		"jquery.spinner.js",
+		"jquery.spinner.min.js"
+	]
+	"keywords": [
+		"utf8",
+		"html entities",
+		"loader",
+		"spinner"
+	]
+}

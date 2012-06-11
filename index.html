@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spinner demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=WINDOWS-1252">
+	<style>.spinner{ font-size: 150%; margin-right: .5em;}</style>
+	<script type="text/javascript" src="code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="jquery-spinner.js"></script>
+	<script type="text/javascript">
+	$( function () {
+		$( 'p' ).each( function ( index, div ) {
+			$.each( $.spinner.style, function ( i, frames ) {
+				$( div ).spinner( index + 1, frames );
+			} );
+		} );
+	} );
+	</script> 
+</head>
+<body>
+	é
+	<p>1 loop / second: </p>
+	<p>2 loop / second: </p>
+	<p>3 loop / second: </p>
+</body>
+</html>
