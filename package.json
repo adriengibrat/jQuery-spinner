@@ -1,6 +1,6 @@
 {
 	"name"        : "jquery.spinner",
-	"title"       : "jQuery spinner",
+	"title"       : "jQuery Spinner",
 	"description" : "Generate spinner using UTF8 html entities loop.",
 	"version"     : "1.0.0",
 	"dependencies": {

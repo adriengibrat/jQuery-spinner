@@ -1,3 +1,29 @@
+/**
+ * jQuery spinner v1.0.0
+ * 
+ * Author: Adrien Gibrat <adrien.gibrat@gmail.com>
+ * 
+ * Generate spinner using UTF8 html entities loop.
+ * 
+ * Usage exemples:
+$( '#content' )
+	// Append spinner to element with spinner method
+	.spinner()
+	// Once content loaded, spinner is 'overwrited'
+	.load( 'page.html' )
+	// Add spinner 'manually'
+	.prepend( $.spinner() )
+	// Get spinner
+	.find( '.spinner' )
+	// Stop spinner
+	.spinner( false )
+	// Restart spinner
+	.spinner( true );
+// Automatically append spinner to body on every ajax call
+$.spinner.ajax();
+// Remove automatic spinner on ajax call
+$.spinner.ajax( false );
+ */
 ( function ( $ ) {
 	// Better minification & allow user to change plugin name easilly
 	var namespace = 'spinner';
@@ -42,8 +68,8 @@
 	} , {
 		// Store various frames styles (utf8 codepoints to avoid encoding problems)
 		style : {
-			circle     : [9716,9719,9718,9717] // ◴◷◶◵
-			, circle2  : [9682,9681,9683,9680] // ◒◑◓◐
+			circle     : [9682,9681,9683,9680] // ◒◑◓◐
+			, circle2  : [9716,9719,9718,9717] // ◴◷◶◵
 			, square   : [9712,9715,9714,9713] // ◰◳◲◱
 			//, grid     : [9637,9640,9636,9639] // ▥▨▤▧
 			//, triad    : [9700,9701,9698,9699] // ◤◥◢◣
@@ -107,15 +133,16 @@
 	} );
 	// Append spinner to Dom or control it
 	$.fn[ namespace ] = function ( speed, frames ) {
-		var self = $( this );
-		self.hasClass( namespace ) ?
-			$.type( speed ) == 'boolean' ? 
-				// Loop or stop existing spinner
-				self.trigger( speed ? 'loop' : 'stop' ) :
-				// Reset existing spinner
-				self.trigger( 'loop', speed, frames ) :
-			// Append new spinner
-			self.append( $[ namespace ]( speed, frames ) );
-		return self;
+		return this.each( function () {
+			var self = $( this );
+			self.hasClass( namespace ) ?
+				$.type( speed ) == 'boolean' ? 
+					// Loop or stop existing spinner
+					self.trigger( speed ? 'loop' : 'stop' ) :
+					// Reset existing spinner
+					self.trigger( 'loop', speed, frames ) :
+				// Append new spinner
+				self.append( $[ namespace ]( speed, frames ) );
+		} );
 	};
 } ) ( jQuery );

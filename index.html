@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Spinner demo</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=WINDOWS-1252">
-	<style>.spinner{ font-size: 150%; margin-right: .5em;}</style>
-	<script type="text/javascript" src="code.jquery.com/jquery-1.7.2.min.js"></script>
+	<title>jQuery Spinner</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=WINDOWS-1252"><!-- Yeah, it's a lame encoding... on purpose! -->
+	<style>
+		@font-face {
+			font-family: 'Test';
+			src: url('arial-webfont.eot');
+			src: url('arial-webfont.eot?#iefix') format('embedded-opentype'),
+				url('arial-webfont.woff') format('woff'),
+				url('arial-webfont.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+		.spinner{ font-family: 'Test';font-size: 150%; margin-right: .5em;}</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="jquery-spinner.js"></script>
 	<script type="text/javascript">
 	$( function () {
@@ -17,7 +27,6 @@
 	</script> 
 </head>
 <body>
-	é
 	<p>1 loop / second: </p>
 	<p>2 loop / second: </p>
 	<p>3 loop / second: </p>
