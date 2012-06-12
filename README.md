@@ -6,7 +6,7 @@ Generate spinner using UTF8 html entities loop.
 Demo: http://adriengibrat.github.com/jQuery-spinner
 
 Usages examples:
-
+```
 $( '#content' )
 	// Append spinner to element with spinner method
 	.spinner()
