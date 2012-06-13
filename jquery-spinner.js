@@ -9,12 +9,12 @@
  * 
  * Usage exemples:
 $( '#content' )
-	// Append spinner to element with spinner method
-	.spinner()
+	// Append custom spinner to element with spinner method
+	.spinner( 2, 'dotspin' )
 	// Once content loaded, spinner is 'overwrited'
 	.load( 'page.html' )
-	// Add custom spinner 'manually'
-	.prepend( $.spinner( 2, 'dotspin' ) )
+	// Add default spinner 'manually'
+	.prepend( $.spinner(  ) )
 	// Get spinner with special selector
 	.find( ':spinner' )
 	// Stop spinner
