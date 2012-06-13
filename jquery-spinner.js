@@ -5,28 +5,29 @@
  * 
  * Generate spinner using UTF8 html entities loop.
  * 
+ * @todo: try to find a font/way to display all utf8 char in f**k'in IE
+ * 
  * Usage exemples:
 $( '#content' )
 	// Append spinner to element with spinner method
 	.spinner()
 	// Once content loaded, spinner is 'overwrited'
 	.load( 'page.html' )
-	// Add spinner 'manually'
-	.prepend( $.spinner() )
-	// Get spinner
-	.find( '.spinner' )
+	// Add custom spinner 'manually'
+	.prepend( $.spinner( 2, 'dotspin' ) )
+	// Get spinner with special selector
+	.find( ':spinner' )
 	// Stop spinner
 	.spinner( false )
 	// Restart spinner
 	.spinner( true );
-// Automatically append spinner to body on every ajax call
-$.spinner.ajax();
+// Automatically append custom spinner to body on every ajax call
+$.spinner.ajax( 1, 'dots' );
 // Remove automatic spinner on ajax call
 $.spinner.ajax( false );
  */
-( function ( $ ) {
-	// Better minification & allow user to change plugin name easilly
-	var namespace = 'spinner';
+// Better minification & namespace allow user to change plugin name easilly
+( function ( $, namespace ) {
 	// Generate spinner using UTF8 characters loop
 	$[ namespace ] = $.extend( function( speed, frames, element ){
 		// New spinner state
@@ -68,7 +69,7 @@ $.spinner.ajax( false );
 	} , {
 		// Store various frames styles (utf8 codepoints to avoid encoding problems)
 		style : {
-//◒◑◓◐◴◷◶◵◰◳◲◱▥▨▤▧◤◥◢◣◸◹◿◺⋮⋰⋯⋱⠁⠈⠐⠠⢀⡀⠄⠂⠐⠠⠄⠂⡀⡄⡆⡇⡏⡟⡿⣿⢿⢻⢹⢸⢰⢠⢀⡆⠇⠋⠙⠸⢰⣠⣄⡆⠖⠲⢰⣠⣄⊶⊷⠆⠒⠰⠤◻◼◇◆▹▸✧✦☆★⚐⚑❣➢➣◮◭◨◧◪◩⇆⇄⇅⇵⟵⟷⟶⟷⟸⟺⟹⟺⇐⇖⇑⇗⇒⇘⇓⇙⇦⬁⇧⬀⇨⬂⇩⬃⬅⬉⬆⬈➡⬊⬇⬋✶✷✹✺✹✷⟕⟗⟖⟗✢✣✤✣✎✏✐✏✓✔✗✘▏▎▍▌▋▊▉█▉▊▌▍▎▁▂▃▄▅▆▇█▇▆▅▄▃▂
+			// What font in IE can display all utf8 chars: ◒◑◓◐◴◷◶◵◰◳◲◱▥▨▤▧◤◥◢◣◸◹◿◺⋮⋰⋯⋱⠁⠈⠐⠠⢀⡀⠄⠂⠐⠠⠄⠂⡀⡄⡆⡇⡏⡟⡿⣿⢿⢻⢹⢸⢰⢠⢀⡆⠇⠋⠙⠸⢰⣠⣄⡆⠖⠲⢰⣠⣄⊶⊷⠆⠒⠰⠤◻◼◇◆▹▸✧✦☆★⚐⚑❣➢➣◮◭◨◧◪◩⇆⇄⇅⇵⟵⟷⟶⟷⟸⟺⟹⟺⇐⇖⇑⇗⇒⇘⇓⇙⇦⬁⇧⬀⇨⬂⇩⬃⬅⬉⬆⬈➡⬊⬇⬋✶✷✹✺✹✷⟕⟗⟖⟗✢✣✤✣✎✏✐✏✓✔✗✘▏▎▍▌▋▊▉█▉▊▌▍▎▁▂▃▄▅▆▇█▇▆▅▄▃▂
 			circle     : [9682,9681,9683,9680] // ◒◑◓◐
 			, circle2  : [9716,9719,9718,9717] // ◴◷◶◵
 			, square   : [9712,9715,9714,9713] // ◰◳◲◱
@@ -77,11 +78,11 @@ $.spinner.ajax( false );
 			//, triad2   : [9720,9721,9727,9722] // ◸◹◿◺
 			, dotline  : [8942,8944,8943,8945] // ⋮⋰⋯⋱
 			, lines    : [119062,119064,119066,119064] //𝄖𝄘𝄚𝄘
-			, dotspin  : [10241,10248,10256,10272,10368,10304,10244,10242] // ⠁⠈⠐⠠⢀⡀⠄⠂
-			, dotspin2 : [10256,10272,10244,10242] // ⠐⠠⠄⠂
+			, dotspin  : [10256,10272,10244,10242] // ⠐⠠⠄⠂
+			, dotspin2 : [10241,10248,10256,10272,10368,10304,10244,10242] // ⠁⠈⠐⠠⢀⡀⠄⠂
 			, dotsnake : [10304,10308,10310,10311,10319,10335,10367,10495,10431,10427,10425,10424,10416,10400,10368] // ⡀⡄⡆⡇⡏⡟⡿⣿⢿⢻⢹⢸⢰⢠⢀
-			, dots     : [10310,10247,10251,10265,10296,10416,10464,10436] // ⡆⠇⠋⠙⠸⢰⣠⣄
-			, dots2    : [10310,10262,10290,10416,10464,10436] // ⡆⠖⠲⢰⣠⣄
+			, dots     : [10310,10262,10290,10416,10464,10436] // ⡆⠖⠲⢰⣠⣄
+			, dots2    : [10310,10247,10251,10265,10296,10416,10464,10436] // ⡆⠇⠋⠙⠸⢰⣠⣄
 			, balance  : [8886,8887]   // ⊶⊷
 			//, dots3      : [10246,10258,10288,10276] // ⠆⠒⠰⠤
 			//, squarebw   : [9723,9724]   // ◻◼
@@ -146,4 +147,16 @@ $.spinner.ajax( false );
 				self.append( $[ namespace ]( speed, frames ) );
 		} );
 	};
-} ) ( jQuery );
+	// Add :spinner() selector, use boolean to filter spinning or not, use integer to filter by speed
+	$.expr[':'].spinner = function ( element, index, match ) {
+		var param  = match[ 3 ]
+			, data = $.data( element, namespace );
+		return ! data ? 
+			false :
+			! param ? 
+				!! data :
+				$.isNumeric( param ) ?
+					data.speed == param :
+					(/^true$/i).test( param ) == !! data.interval;
+	}
+} ) ( jQuery, 'spinner' );
